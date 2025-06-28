@@ -4,7 +4,7 @@ project(ur10e_arm_with_lift)
 find_package(ament_cmake REQUIRED)
 
 install(
-  DIRECTORY launch urdf
+  DIRECTORY launch rviz urdf
   DESTINATION share/${PROJECT_NAME}
 )
 
