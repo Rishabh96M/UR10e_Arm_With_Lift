@@ -1,16 +1,25 @@
 <?xml version="1.0"?>
 <package format="3">
-  <name>ur10e_with_lift</name>
+  <name>ur10e_arm_with_lift</name>
   <version>0.0.1</version>
   <description>UR10e Robot with prismatic joint</description>
 
+  <author email="rishabh.m96@gmail.com">Rishabh Mukund</author>
   <maintainer email="rishabh.m96@gmail.com">Rishabh Mukund</maintainer>
+  
   <license>MIT</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
-  <exec_depend>xacro</exec_depend>
-  <exec_depend>robot_state_publisher</exec_depend>
+  
+  <exec_depend>joint_state_publisher_gui</exec_depend>
   <exec_depend>launch</exec_depend>
   <exec_depend>launch_ros</exec_depend>
-
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>rviz2</exec_depend>
+  <exec_depend>urdf</exec_depend>
+  <exec_depend>xacro</exec_depend>
+  
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
 </package>
