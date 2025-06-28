@@ -3,7 +3,7 @@
    <!-- robot name parameter -->
    <xacro:arg name="name" default="ur"/>
    <!-- import main macro -->
-   <xacro:include filename="$(find ur_description)/urdf/ur_macro.xacro"/>
+   <xacro:include filename="$(find ur10e_arm_with_lift)/urdf/ur10e_with_lift_macro.xacro"/>
 
    <!-- possible 'ur_type' values: ur3, ur3e, ur5, ur5e, ur7e, ur10, ur10e, ur12e, ur16e, ur15, ur20, ur30 -->
    <!-- the default value should raise an error in case this was called without defining the type -->
@@ -93,7 +93,7 @@
           <box size="0.50 0.50 0.14"/>
         </geometry>
         <material name="lift_grey">
-           <color rgba="0.2 0.2 0.2 1"/>
+           <color rgba="0.6 0.6 0.6 1"/>
         </material>
       </visual>
       <collision>
