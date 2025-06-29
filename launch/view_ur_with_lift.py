@@ -76,13 +76,6 @@ def generate_launch_description():
             "have to be updated.",
         )
     )
-    # declared_arguments.append(
-    #     DeclareLaunchArgument(
-    #         "sim_ignition",
-    #         default_value="true",
-    #         description="Launches gazebo ignition for simulation",
-    #     )
-    # )
 
     # Initialize Arguments
     ur_type = LaunchConfiguration("ur_type")
@@ -93,7 +86,6 @@ def generate_launch_description():
     description_package = LaunchConfiguration("description_package")
     description_file = LaunchConfiguration("description_file")
     tf_prefix = LaunchConfiguration("tf_prefix")
-    # sim_ignition = LaunchConfiguration("sim_ignition")
 
     robot_description_content = Command(
         [
@@ -118,8 +110,6 @@ def generate_launch_description():
             " ",
             "tf_prefix:=",
             tf_prefix,
-            # "sim_ignition:=",
-            # sim_ignition,
         ]
     )
     robot_description = {
