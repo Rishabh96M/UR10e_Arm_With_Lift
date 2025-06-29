@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://wiki.ros.org/xacro" name="$(arg name)">
    <!-- robot name parameter -->
-   <xacro:arg name="name" default="ur10e_with_lift"/>
+   <xacro:arg name="name" default="ur"/>
    <!-- import main macro -->
    <xacro:include filename="$(find ur10e_arm_with_lift)/urdf/ur10e_with_lift_macro.xacro"/>
 
@@ -120,7 +120,7 @@
     </joint>
 
    <!-- arm -->
-   <xacro:ur10e_with_lift_robot
+   <xacro:ur_robot
      name="$(arg name)"
      tf_prefix="$(arg tf_prefix)"
      parent="lift_link"
