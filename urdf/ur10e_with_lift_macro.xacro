@@ -4,7 +4,7 @@
   <xacro:include filename="$(find ur_description)/urdf/inc/ur_transmissions.xacro" />
   <xacro:include filename="$(find ur_description)/urdf/inc/ur_common.xacro" />
 
-  <xacro:macro name="ur_robot" params="
+  <xacro:macro name="ur10e_with_lift_robot" params="
     name
     tf_prefix
     parent
@@ -58,9 +58,9 @@
 
     <xacro:if value="${generate_ros2_control_tag}">
       <!-- ros2 control include -->
-      <xacro:include filename="$(find ur10e_arm_with_lift)/urdf/ur_with_lift.ros2_control.xacro" />
+      <xacro:include filename="$(find ur10e_arm_with_lift)/urdf/ur10e_with_lift.ros2_control.xacro" />
       <!-- ros2 control instance -->
-      <xacro:ur_ros2_control
+      <xacro:ur10e_with_lift_ros2_control
         name="${name}"
         use_fake_hardware="${use_fake_hardware}"
         initial_positions="${initial_positions}"
@@ -98,6 +98,30 @@
     <!-- Placeholder for ros2_control transmission which don't yet exist -->
 
     <!-- links -  main serial chain -->
+    <!-- Lift Link -->
+    <link name="${tf_prefix}lift_link">
+      <visual>
+        <origin xyz="0 0 0.07" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.50 0.50 0.14"/>
+        </geometry>
+        <material name="lift_grey">
+           <color rgba="0.6 0.6 0.6 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0.07" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.50 0.50 0.14"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="33"/>
+        <origin rpy="0 0 0 " xyz="0 0 0.07"/>
+        <inertia ixx="0.1" ixy="0.0" ixz="0.0" iyy="0.1" iyz="0.0" izz="0.1"/>
+      </inertial>
+    </link>
+
     <link name="${tf_prefix}base_link"/>
     <link name="${tf_prefix}base_link_inertia">
       <visual>
@@ -282,10 +306,19 @@
       </inertial>
     </link>
 
+    <!-- Vertical Prismatic Joint -->
+    <joint name="${tf_prefix}lift_joint" type="prismatic">
+      <parent link="${parent}" />
+      <child link="${tf_prefix}lift_link" />
+      <origin xyz="0 0 0 " rpy="0 0 0" />
+      <axis xyz="0 0 1" />
+      <limit lower="0.0" upper="1.0" effort="500" velocity="0.5"/>
+    </joint>
+
     <!-- base_joint fixes base_link to the environment -->
     <joint name="${tf_prefix}base_joint" type="fixed">
       <origin xyz="0 0 0.15" rpy="0 0 ${pi}" />
-      <parent link="${parent}" />
+      <parent link="${tf_prefix}lift_link" />
       <child link="${tf_prefix}base_link" />
     </joint>
 
