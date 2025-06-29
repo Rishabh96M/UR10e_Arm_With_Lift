@@ -4,7 +4,7 @@
   <xacro:include filename="$(find ur_description)/urdf/inc/ur_transmissions.xacro" />
   <xacro:include filename="$(find ur_description)/urdf/inc/ur_common.xacro" />
 
-  <xacro:macro name="ur_robot" params="
+  <xacro:macro name="ur10e_with_lift_robot" params="
     name
     tf_prefix
     parent
@@ -58,9 +58,9 @@
 
     <xacro:if value="${generate_ros2_control_tag}">
       <!-- ros2 control include -->
-      <xacro:include filename="$(find ur_description)/urdf/ur.ros2_control.xacro" />
+      <xacro:include filename="$(find ur10e_arm_with_lift)/urdf/ur_with_lift.ros2_control.xacro" />
       <!-- ros2 control instance -->
-      <xacro:ur_ros2_control
+      <xacro:ur10e_with_lift_ros2_control
         name="${name}"
         use_fake_hardware="${use_fake_hardware}"
         initial_positions="${initial_positions}"

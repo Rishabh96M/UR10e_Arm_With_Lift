@@ -86,7 +86,7 @@
    </xacro:if>
 
     <!-- Lift Link -->
-    <link name="lift_link">
+    <link name="${tf_prefix}lift_link">
       <visual>
         <origin xyz="0 0 0.07" rpy="0 0 0"/>
         <geometry>
@@ -110,7 +110,7 @@
     </link>
 
     <!-- Vertical Prismatic Joint -->
-    <joint name="lift_joint" type="prismatic">
+    <joint name="${tf_prefix}lift_joint" type="prismatic">
       <parent link="world" />
       <child link="lift_link" />
       <origin xyz="0 0 0 " rpy="0 0 0" />
@@ -120,7 +120,7 @@
     </joint>
 
    <!-- arm -->
-   <xacro:ur_robot
+   <xacro:ur10e_with_lift_robot
      name="$(arg name)"
      tf_prefix="$(arg tf_prefix)"
      parent="lift_link"
@@ -182,63 +182,4 @@
       </plugin>
     </gazebo>
   </xacro:if>
-
-  <!-- <ros2_control name="lift_control" type="system">
-    <hardware>
-      <xacro:if value="$(arg sim_gazebo)">
-        <plugin>gazebo_ros2_control/GazeboSystem</plugin>
-      </xacro:if>
-        
-      <xacro:if value="$(arg sim_ignition)">
-        <plugin>ign_ros2_control/IgnitionSystem</plugin>
-      </xacro:if>
-
-      <xacro:if value="$(arg use_fake_hardware)">
-        <plugin>mock_components/GenericSystem</plugin>
-        <param name="fake_sensor_commands">${fake_sensor_commands}</param>
-        <param name="state_following_offset">0.0</param>
-        <param name="calculate_dynamics">true</param>
-      </xacro:if>
-      
-      <xacro:unless value="$(arg use_fake_hardware or arg sim_gazebo or arg sim_ignition)">
-        <plugin>ur_robot_driver/URPositionHardwareInterface</plugin>
-        <param name="robot_ip">$(arg robot_ip)</param>
-        <param name="script_filename">$(arg script_filename)</param>
-        <param name="output_recipe_filename">$(arg output_recipe_filename)</param>
-        <param name="input_recipe_filename">$(arg input_recipe_filename)</param>
-        <param name="headless_mode">$(arg headless_mode)</param>
-        <param name="reverse_port">$(arg reverse_port)</param>
-        <param name="script_sender_port">$(arg script_sender_port)</param>
-        <param name="reverse_ip">$(arg reverse_ip)</param>
-        <param name="script_command_port">$(arg script_command_port)</param>
-        <param name="trajectory_port">$(arg trajectory_port)</param>
-        <param name="tf_prefix">$(arg tf_prefix)</param>
-        <param name="non_blocking_read">$(arg non_blocking_read)</param>
-        <param name="servoj_gain">2000</param>
-        <param name="servoj_lookahead_time">0.03</param>
-        <param name="use_tool_communication">$(arg use_tool_communication)</param>
-        <param name="kinematics/hash">$(arg hash_kinematics)</param>
-        <param name="tool_voltage">$(arg tool_voltage)</param>
-        <param name="tool_parity">$(arg tool_parity)</param>
-        <param name="tool_baud_rate">$(arg tool_baud_rate)</param>
-        <param name="tool_stop_bits">$(arg tool_stop_bits)</param>
-        <param name="tool_rx_idle_chars">$(arg tool_rx_idle_chars)</param>
-        <param name="tool_tx_idle_chars">$(arg tool_tx_idle_chars)</param>
-        <param name="tool_device_name">$(arg tool_device_name)</param>
-        <param name="tool_tcp_port">$(arg tool_tcp_port)</param>
-        <param name="keep_alive_count">$(arg keep_alive_count)</param>
-      </xacro:unless>
-    </hardware>
-
-    <joint name="lift_joint">
-      <command_interface name="position"/>
-      <command_interface name="velocity"/>
-      <state_interface name="position">
-        <param name="initial_value">0.0</param>
-      </state_interface>
-      <state_interface name="velocity"/>
-      <state_interface name="effort"/>
-    </joint>
-  </ros2_control> -->
-
 </robot>
