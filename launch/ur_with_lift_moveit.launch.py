@@ -175,10 +175,10 @@ def launch_setup(context, *args, **kwargs):
     # Trajectory Execution Configuration
     controllers_yaml = load_yaml("ur10e_arm_with_lift", "config/controllers.yaml")
     # the scaled_joint_trajectory_controller does not work on fake hardware
-    change_controllers = context.perform_substitution(use_sim_time)
-    if change_controllers == "true":
-        controllers_yaml["scaled_joint_trajectory_controller"]["default"] = True
-        controllers_yaml["joint_trajectory_controller"]["default"] = False
+    # change_controllers = context.perform_substitution(use_sim_time)
+    # if change_controllers == "true":
+    #     controllers_yaml["scaled_joint_trajectory_controller"]["default"] = True
+    #     controllers_yaml["joint_trajectory_controller"]["default"] = False
 
     moveit_controllers = {
         "moveit_simple_controller_manager": controllers_yaml,
