@@ -312,19 +312,12 @@
       <child link="${tf_prefix}lift_link" />
       <origin xyz="0 0 0 " rpy="0 0 0" />
       <axis xyz="0 0 1" />
-      <limit lower="0.0" upper="1.0" effort="1000" velocity="10"/>
+      <limit lower="-0.001" upper="1.001" effort="1000" velocity="1.0"/>
     </joint>
-
-    <gazebo reference="lift_joint">
-      <kp>200.0</kp>
-      <kd>20.0</kd>
-      <ki>0.0</ki>
-      <fmax>1000.0</fmax>
-    </gazebo>
 
     <!-- base_joint fixes base_link to the environment -->
     <joint name="${tf_prefix}base_joint" type="fixed">
-      <origin xyz="0 0 0.15" rpy="0 0 ${pi}" />
+      <origin xyz="0 0 0.14" rpy="0 0 ${pi}" />
       <parent link="${tf_prefix}lift_link" />
       <child link="${tf_prefix}base_link" />
     </joint>
