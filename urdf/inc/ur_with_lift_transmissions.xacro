@@ -11,7 +11,7 @@
     <transmission name="${prefix}lift_trans">
       <type>transmission_interface/SimpleTransmission</type>
       <joint name="${prefix}lift_joint">
-        <hardwareInterface>${hw_interface}</hardwareInterface>
+        <command_interface>position</command_interface>
       </joint>
       <actuator name="{prefix}lift_motor">
         <mechanicalReduction>1</mechanicalReduction>
