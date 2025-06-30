@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://wiki.ros.org/xacro">
 
-  <xacro:include filename="$(find ur10e_arm_with_lift)/urdf/inc/ur_with_lift_transmissions.xacro" />
-  <xacro:include filename="$(find ur10e_arm_with_lift)/urdf/inc/ur_common.xacro" />
+  <xacro:include filename="$(find ur_description)/urdf/inc/ur_transmissions.xacro" />
+  <xacro:include filename="$(find ur_description)/urdf/inc/ur_common.xacro" />
 
   <xacro:macro name="ur_robot" params="
     name
